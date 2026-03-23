@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUN - SHAD1K1</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Стили для страницы развлечений */
+        .fun-widgets {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .widget {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .widget-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Стили для казино игры */
+        .slot-machine {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .slot {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .spin-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .spin-btn:hover {
+            background: linear-gradient(135deg, #c0392b, #a53125);
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 1rem;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            min-height: 24px;
+        }
+
+        /* Стили для конвертера криптовалют */
+        .converter {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .converter-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .converter-input input,
+        .converter-input select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .converter-input input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .converter-result {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Стили для генератора паролей */
+        .password-generator {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .password-display {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+            font-family: monospace;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            word-break: break-all;
+        }
+
+        .password-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .generate-btn {
+            padding: 12px;
+            background: linear-gradient(135deg, #27ae60, #219653);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            background: linear-gradient(135deg, #219653, #1e8449);
+            transform: translateY(-2px);
+        }
+
+        /* Стили для калькулятора */
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calculator-display {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: right;
+            color: white;
+            font-size: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            word-break: break-all;
+        }
+
+        .calc-btn {
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .calc-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .calc-btn.operator {
+            background: rgba(52, 152, 219, 0.3);
+        }
+
+        .calc-btn.equals {
+            background: rgba(46, 204, 113, 0.3);
+        }
+
+        .calc-btn.clear {
+            background: rgba(231, 76, 60, 0.3);
+        }
+
+        .back-container {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 90px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .dedication {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .dedication-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+            .fun-widgets {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .slot {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Заголовок -->
+        <h1 class="main-title">FUN</h1>
+        
+        <!-- Виджеты -->
+        <div class="fun-widgets">
+            <!-- Казино игра -->
+            <div class="widget">
+                <h2 class="widget-title">🎰 Слот-машина</h2>
+                <div class="slot-machine">
+                    <div class="slot" id="slot1">🍒</div>
+                    <div class="slot" id="slot2">🍋</div>
+                    <div class="slot" id="slot3">⭐</div>
+                </div>
+                <button class="spin-btn" onclick="spinSlots()">Крутить!</button>
+                <div class="result" id="slotResult"></div>
+            </div>
+
+            <!-- Конвертер криптовалют -->
+            <div class="widget">
+                <h2 class="widget-title">💰 Конвертер крипты</h2>
+                <div class="converter">
+                    <div class="converter-input">
+                        <input type="number" id="cryptoAmount" placeholder="Сумма" value="1">
+                        <select id="fromCrypto">
+                            <option value="bitcoin">BTC</option>
+                            <option value="ethereum">ETH</option>
+                            <option value="solana">SOL</option>
+                            <option value="shiba">SHIB</option>
+                        </select>
+                    </div>
+                    <div class="converter-input">
+                        <input type="number" id="fiatAmount" placeholder="Результат" readonly>
+                        <select id="toFiat">
+                            <option value="usd">USD</option>
+                            <option value="eur">EUR</option>
+                            <option value="rub">RUB</option>
+                        </select>
+                    </div>
+                    <div class="converter-result" id="converterResult">
+                        Введите сумму для конвертации
+                    </div>
+                </div>
+            </div>
+
+            <!-- Генератор паролей -->
+            <div class="widget">
+                <h2 class="widget-title">🔐 Генератор паролей</h2>
+                <div class="password-generator">
+                    <div class="password-display" id="passwordDisplay">
+                        Нажмите "Сгенерировать"
+                    </div>
+                    <div class="password-options">
+                        <div class="option-row">
+                            <span>Длина пароля:</span>
+                            <input type="range" id="passwordLength" min="8" max="32" value="12">
+                            <span id="lengthValue">12</span>
+                        </div>
+                        <div class="option-row">
+                            <span>Цифры</span>
+                            <input type="checkbox" id="includeNumbers" checked>
+                        </div>
+                        <div class="option-row">
+                            <span>Спецсимволы</span>
+                            <input type="checkbox" id="includeSymbols" checked>
+                        </div>
+                    </div>
+                    <button class="generate-btn" onclick="generatePassword()">Сгенерировать пароль</button>
+                </div>
+            </div>
+
+            <!-- Калькулятор -->
+            <div class="widget">
+                <h2 class="widget-title">🧮 Калькулятор</h2>
+                <div class="calculator">
+                    <div class="calculator-display" id="calcDisplay">0</div>
+                    <button class="calc-btn clear" onclick="clearCalculator()">C</button>
+                    <button class="calc-btn" onclick="deleteLast()">⌫</button>
+                    <button class="calc-btn operator" onclick="appendToDisplay('/')">/</button>
+                    <button class="calc-btn operator" onclick="appendToDisplay('*')">×</button>
+                    
+                    <button class="calc-btn" onclick="appendToDisplay('7')">7</button>
+                    <button class="calc-btn" onclick="appendToDisplay('8')">8</button>
+                    <button class="calc-btn" onclick="appendToDisplay('9')">9</button>
+                    <button class="calc-btn operator" onclick="appendToDisplay('-')">-</button>
+                    
+                    <button class="calc-btn" onclick="appendToDisplay('4')">4</button>
+                    <button class="calc-btn" onclick="appendToDisplay('5')">5</button>
+                    <button class="calc-btn" onclick="appendToDisplay('6')">6</button>
+                    <button class="calc-btn operator" onclick="appendToDisplay('+')">+</button>
+                    
+                    <button class="calc-btn" onclick="appendToDisplay('1')">1</button>
+                    <button class="calc-btn" onclick="appendToDisplay('2')">2</button>
+                    <button class="calc-btn" onclick="appendToDisplay('3')">3</button>
+                    <button class="calc-btn equals" onclick="calculateResult()" rowspan="2">=</button>
+                    
+                    <button class="calc-btn" onclick="appendToDisplay('0')" colspan="2">0</button>
+                    <button class="calc-btn" onclick="appendToDisplay('.')">.</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Кнопка назад -->
+        <div class="back-container">
+            <a href="../index.html" class="back-btn">
+                <span>←</span>
+                <span>на главную</span>
+            </a>
+        </div>
+        
+        
+    </div>
+
+    <script>
+        // Казино игра
+        const symbols = ['🍒', '🍋', '⭐', '🍉', '🔔', '💎'];
+        
+        function spinSlots() {
+            const slots = ['slot1', 'slot2', 'slot3'];
+            const results = [];
+            
+            // Анимация вращения
+            slots.forEach((slotId, index) => {
+                const slot = document.getElementById(slotId);
+                let spins = 0;
+                const maxSpins = 10 + index * 5;
+                
+                const spinInterval = setInterval(() => {
+                    slot.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    spins++;
+                    
+                    if (spins >= maxSpins) {
+                        clearInterval(spinInterval);
+                        const finalSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+                        slot.textContent = finalSymbol;
+                        results.push(finalSymbol);
+                        
+                        // Проверяем результаты после остановки всех слотов
+                        if (results.length === 3) {
+                            checkSlotResult(results);
+                        }
+                    }
+                }, 100);
+            });
+        }
+        
+        function checkSlotResult(results) {
+            const resultElement = document.getElementById('slotResult');
+            
+            if (results[0] === results[1] && results[1] === results[2]) {
+                resultElement.textContent = '🎉 ДЖЕКПОТ! Вы выиграли!';
+                resultElement.style.color = '#27ae60';
+            } else if (results[0] === results[1] || results[1] === results[2] || results[0] === results[2]) {
+                resultElement.textContent = '👍 Неплохо! Маленький выигрыш!';
+                resultElement.style.color = '#f39c12';
+            } else {
+                resultElement.textContent = '😢 Попробуйте еще раз!';
+                resultElement.style.color = '#e74c3c';
+            }
+        }
+
+        // Конвертер криптовалют
+        const cryptoRates = {
+            bitcoin: { usd: 45000, eur: 41000, rub: 3300000 },
+            ethereum: { usd: 3000, eur: 2700, rub: 220000 },
+            solana: { usd: 100, eur: 90, rub: 7500 },
+            shiba: { usd: 0.000025, eur: 0.000023, rub: 0.0018 }
+        };
+        
+        function updateConverter() {
+            const amount = parseFloat(document.getElementById('cryptoAmount').value) || 0;
+            const fromCrypto = document.getElementById('fromCrypto').value;
+            const toFiat = document.getElementById('toFiat').value;
+            
+            const rate = cryptoRates[fromCrypto][toFiat];
+            const result = amount * rate;
+            
+            document.getElementById('fiatAmount').value = result.toFixed(2);
+            document.getElementById('converterResult').textContent = 
+                `${amount} ${fromCrypto.toUpperCase()} = ${result.toFixed(2)} ${toFiat.toUpperCase()}`;
+        }
+        
+        // Инициализация конвертера
+        document.getElementById('cryptoAmount').addEventListener('input', updateConverter);
+        document.getElementById('fromCrypto').addEventListener('change', updateConverter);
+        document.getElementById('toFiat').addEventListener('change', updateConverter);
+        updateConverter(); // Первоначальный расчет
+
+        // Генератор паролей
+        document.getElementById('passwordLength').addEventListener('input', function() {
+            document.getElementById('lengthValue').textContent = this.value;
+        });
+        
+        function generatePassword() {
+            const length = parseInt(document.getElementById('passwordLength').value);
+            const includeNumbers = document.getElementById('includeNumbers').checked;
+            const includeSymbols = document.getElementById('includeSymbols').checked;
+            
+            let chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (includeNumbers) chars += '0123456789';
+            if (includeSymbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+            
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            
+            document.getElementById('passwordDisplay').textContent = password;
+        }
+
+        // Калькулятор
+        let currentDisplay = '0';
+        
+        function updateCalculatorDisplay() {
+            document.getElementById('calcDisplay').textContent = currentDisplay;
+        }
+        
+        function appendToDisplay(value) {
+            if (currentDisplay === '0' && value !== '.') {
+                currentDisplay = value;
+            } else {
+                currentDisplay += value;
+            }
+            updateCalculatorDisplay();
+        }
+        
+        function clearCalculator() {
+            currentDisplay = '0';
+            updateCalculatorDisplay();
+        }
+        
+        function deleteLast() {
+            if (currentDisplay.length > 1) {
+                currentDisplay = currentDisplay.slice(0, -1);
+            } else {
+                currentDisplay = '0';
+            }
+            updateCalculatorDisplay();
+        }
+        
+        function calculateResult() {
+            try {
+                // Заменяем × на * для вычисления
+                const expression = currentDisplay.replace(/×/g, '*');
+                currentDisplay = eval(expression).toString();
+            } catch (error) {
+                currentDisplay = 'Ошибка';
+            }
+            updateCalculatorDisplay();
+        }
+        
+        // Инициализация калькулятора
+        updateCalculatorDisplay();
+    </script>
+</body>
+</html>

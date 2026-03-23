@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECTS - SHAD1K1</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Стили для страницы проектов */
+        .projects-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .project-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 350px;
+            height: 80px;
+            text-decoration: none;
+            border-radius: 90px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 0 25px;
+        }
+        
+        .project-btn:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .project-content {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .project-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-label {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+            flex-grow: 1;
+            text-align: left;
+        }
+        
+        .back-container {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 90px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Надпись внизу страницы */
+        .dedication {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .dedication-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9rem;
+            font-style: italic;
+            letter-spacing: 0.05em;
+        }
+
+        /* Анимация появления кнопок */
+        .project-btn {
+            animation: slideInRight 0.6s ease forwards;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        
+        .project-btn:nth-child(1) { animation-delay: 0.1s; }
+        .project-btn:nth-child(2) { animation-delay: 0.2s; }
+        .project-btn:nth-child(3) { animation-delay: 0.3s; }
+        
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .project-btn {
+                width: 300px;
+                height: 70px;
+            }
+            
+            .project-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .project-label {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-btn {
+                width: 280px;
+                height: 65px;
+                padding: 0 20px;
+            }
+            
+            .project-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .project-label {
+                font-size: 1rem;
+            }
+            
+            .dedication-text {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Заголовок таким же шрифтом -->
+        <h1 class="main-title">PROJECTS</h1>
+        
+        <!-- Кнопки проектов -->
+        <div class="projects-buttons">
+            <a href="https://file.com.ru/kxOLJFp5j0eNbgR/file" class="project-btn" target="_blank">
+                <div class="project-content">
+                    <div class="project-icon">🐍</div>
+                    <span class="project-label">my python game</span>
+                </div>
+            </a>
+            
+            <a href="https://t.me/shad1k1_vpn" class="project-btn" target="_blank">
+                <div class="project-content">
+                    <div class="project-icon">🔒</div>
+                    <span class="project-label">my vpn shop</span>
+                </div>
+            </a>
+            
+            <a href="https://www.tiktok.com/@shad1k15?_t=ZT-90pvV6kNX0B&_r=1" class="project-btn" target="_blank">
+                <div class="project-content">
+                    <div class="project-icon">🎵</div>
+                    <span class="project-label">my tik tok</span>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Кнопка назад -->
+        <div class="back-container">
+            <a href="../index.html" class="back-btn">
+                <span>←</span>
+                <span>to main</span>
+            </a>
+        </div>
+        
+    </div>
+</body>
+</html>

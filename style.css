@@ -1,0 +1,174 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Подключение шрифта */
+@font-face {
+    font-family: 'Widock Trial';
+    src: url('fonts/Widock TRIAL Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Основные стили body */
+body {
+    font-family: 'Arial', sans-serif;
+    background: url('background.jpg') center/cover fixed;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center;     /* Центрирование по вертикали */
+    position: relative;
+    overflow-x: hidden;      /* Запрещаем горизонтальный скролл */
+}
+
+/* Прозрачный overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 20, 0.7);
+    z-index: -1;
+}
+
+/* Главный контейнер - ВАЖНО! */
+.main-container {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;             /* Занимает всю ширину */
+    max-width: 1200px;       /* Но не больше 1200px */
+    margin: 0 auto;          /* Автоматические отступы по бокам */
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Центрируем дочерние элементы */
+    justify-content: center;
+}
+
+/* Заголовок */
+.main-title {
+    font-family: 'Widock Trial', sans-serif;
+    font-size: 4rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 4rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;      /* На всякий случай */
+    width: 100%;             /* Занимает всю ширину контейнера */
+}
+
+/* Контейнер для кнопок */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;     /* Центрируем кнопки */
+    width: 100%;
+}
+
+/* Кнопки */
+.glass-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 70px;
+    text-decoration: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Текст кнопок */
+.btn-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+}
+
+/* Эффекты при наведении */
+.glass-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Анимация появления */
+.glass-btn {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.glass-btn:nth-child(1) { animation-delay: 0.1s; }
+.glass-btn:nth-child(2) { animation-delay: 0.2s; }
+.glass-btn:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.glass-btn:hover, .contact-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+        margin-bottom: 3rem;
+    }
+    
+    .glass-btn {
+        width: 250px;
+        height: 65px;
+    }
+    
+    .btn-text {
+        font-size: 1.2rem;
+    }
+    
+    .main-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .glass-btn {
+        width: 220px;
+        height: 60px;
+    }
+    
+    .btn-text {
+        font-size: 1.1rem;
+    }
+}
